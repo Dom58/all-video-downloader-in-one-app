@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon --exec babel-node index.js",
     "start": "babel-node index.js",
     "prestart": "npm run db:migrate",
     "sequelize": "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize $*",
@@ -21,6 +21,12 @@
     "db:seed:test": "NODE_ENV=test npm run db:seed"
   },
   "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/register": "^7.13.16",
     "babel-plugin-module-resolver": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -32,11 +38,9 @@
     "ytdl-core": "4.9.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/node": "^7.20.7",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.21.4"
+    "babel-loader": "^8.2.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
   },
   "author": "Dominique Ndahimana"
 }

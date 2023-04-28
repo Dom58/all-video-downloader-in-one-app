@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 dotenv.config();
 
 const status = true;
-const createdAt = new Date().toUTCString();
+const createdAt = new Date();
 const password = bcrypt.hashSync('password', 10);
 
 const { DEFAULT_ADMIN_EMAIL } = process.env;
@@ -20,6 +20,7 @@ module.exports = {
       fullName: 'Admin',
       emailVerified: status,
       createdAt,
+      updatedAt: createdAt,
       role: "admin"
     },
     {
@@ -29,6 +30,7 @@ module.exports = {
       fullName: 'Normal User',
       emailVerified: status,
       createdAt,
+      updatedAt: createdAt,
       role: "user"
     },
     ], {});

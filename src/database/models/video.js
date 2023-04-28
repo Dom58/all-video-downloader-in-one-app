@@ -24,6 +24,14 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: "Web User",
       },
+      createdAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "videos",

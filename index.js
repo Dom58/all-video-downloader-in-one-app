@@ -2,17 +2,20 @@ import express from "express";
 import ytdl from "ytdl-core";
 import cors from "cors";
 import "dotenv/config";
-import Video from "./src/database/models/video.js";
+import router from './src/routes/index.js';
+// import Model from './src/database/models/index.js'
 
 const app = express();
+const {Video} = './src/database/models/index.js'
 
 app.use(cors());
 app.use(express.json());
+// body parse configuration
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to youtube video downloader" });
-});
+app.use('/api', router);
+
+console.log('====Video==', Video);
 
 app.get("/download", async (req, res) => {
   try {
@@ -37,11 +40,11 @@ app.get("/download", async (req, res) => {
     });
 
     if(response_url&&response_url) {
-      Video.create( {
-        name: "Tester",
-        platform: "Web",
-        url: response_url
-      })
+      // Video.create( {
+      //   name: "Tester",
+      //   platform: "Web",
+      //   url: response_url
+      // })
     }
     // res.json({ status: 200, message: "Youtube video downloaded successfully!" });
     res.json({
@@ -52,6 +55,13 @@ app.get("/download", async (req, res) => {
   } catch (error) {
     res.json({ status: 500, error: error.message });
   }
+});
+
+// Error handling to catch 404
+app.all('*', (_req, res) => {
+  res.status(404).json({
+    error: 'address Not found',
+  });
 });
 
 const port = process.env.PORT || 4000;

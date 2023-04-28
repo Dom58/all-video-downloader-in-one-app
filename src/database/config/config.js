@@ -7,9 +7,9 @@ export default {
     password: process.env.DB_PASSWORD_DEV,
     database: process.env.DB_NAME_DEV,
     host: process.env.DB_HOST_DEV,
-    dialect: process.env.DB_DIALECT,
+    dialect: 'mysql',
     seederStorage: 'sequelize',
-    port: process.env.DB_PORT
+    port: "3306"
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -19,8 +19,7 @@ export default {
     host: process.env.DB_HOST_DEV,
     dialect: 'mysql',
     seederStorage: 'sequelize',
+    port: "3306",
     logging: false,
   },
 };
-
-// export default config;
