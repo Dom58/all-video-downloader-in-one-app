@@ -1,0 +1,29 @@
+{
+  "name": "video-downloader",
+  "version": "1.0.0",
+  "description": "Video download from URL",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "babel-node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^3.2.4",
+    "sequelize": "^6.31.0",
+    "socket.io": "^4.6.1",
+    "ytdl-core": "4.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/node": "^7.20.7",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.21.4"
+  },
+  "author": "Dominique Ndahimana"
+}
