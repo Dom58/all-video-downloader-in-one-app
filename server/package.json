@@ -3,13 +3,26 @@
   "version": "1.0.0",
   "description": "Video download from URL",
   "main": "index.js",
-  "type": "module",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "prestart": "npm run db:migrate",
+    "sequelize": "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize $*",
+    "db:create": "sequelize db:create",
+    "db:create:test": "NODE_ENV=test sequelize db:create",
+    "db:drop": "sequelize db:drop",
+    "db:drop:test": "NODE_ENV=test sequelize db:drop",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:reset": "sequelize db:migrate:undo:all",
+    "db:seed": "sequelize db:seed:all",
+    "db:migrate:test": "NODE_ENV=test npm run db:migrate",
+    "db:seed:test": "NODE_ENV=test npm run db:seed"
   },
   "dependencies": {
+    "babel-plugin-module-resolver": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

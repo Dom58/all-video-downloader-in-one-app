@@ -2,6 +2,7 @@ import express from "express";
 import ytdl from "ytdl-core";
 import cors from "cors";
 import "dotenv/config";
+import Video from "./src/database/models/video.js";
 
 const app = express();
 
@@ -18,7 +19,9 @@ app.get("/download", async (req, res) => {
     const url = req.query && req.query.url;
     const videoInfo = await ytdl.getInfo(url);
     const title = videoInfo.videoDetails.title;
-    const videoOptions = ytdl.chooseFormat(videoInfo.formats, { quality: "highest" });
+    const videoOptions = ytdl.chooseFormat(videoInfo.formats, {
+      quality: "highest",
+    });
 
     res.setHeader(
       "Content-Disposition",
@@ -27,9 +30,26 @@ app.get("/download", async (req, res) => {
 
     ytdl(url, { videoOptions }).pipe(res);
 
-    res.json({ status: 200, message: "Youtube video downloaded successfully!" });
+    let response_url = [];
+    videoInfo.formats.map(async(res) => {
+      response_url = res.url;
+      return await response_url;
+    });
 
-  } catch(error) {
+    if(response_url&&response_url) {
+      Video.create( {
+        name: "Tester",
+        platform: "Web",
+        url: response_url
+      })
+    }
+    // res.json({ status: 200, message: "Youtube video downloaded successfully!" });
+    res.json({
+      status: 200,
+      message: "Youtube video downloaded successfully!",
+      data: response_url,
+    });
+  } catch (error) {
     res.json({ status: 500, error: error.message });
   }
 });
