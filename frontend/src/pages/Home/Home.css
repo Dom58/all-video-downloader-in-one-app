@@ -23,10 +23,6 @@
   padding: 5px;
 }
 
-video::-webkit-media-controls{
-  background-color: red !important;
-}
-
 .card {
   box-shadow: 5px 1px 10px #7a7a7a;
   margin-left: 10px;

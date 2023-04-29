@@ -50,7 +50,7 @@ const Home: FC = () => {
           <textarea
             className="form-control url-textarea"
             name="url"
-            placeholder="Enter YouTube URL"
+            placeholder="Enter any YouTube link"
             onChange={handleChange}
           ></textarea>
           <Button
@@ -68,7 +68,6 @@ const Home: FC = () => {
             {data && data ? (
               <video
                 controls
-                // controlsList="download"
                 src={data && data}
                 className="video-preview"
               >
