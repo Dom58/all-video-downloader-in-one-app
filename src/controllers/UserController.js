@@ -1,11 +1,10 @@
 import dotenv from 'dotenv';
-import path from 'path';
-// import model from '../database/models/index.js';
+// import db from '../database/models/index.js';
 
 
 dotenv.config();
 
-const {users} = '../database/models/index.js';
+// const {users} = db;
 
 /**
  * User Controllers

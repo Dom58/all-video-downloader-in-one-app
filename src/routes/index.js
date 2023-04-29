@@ -1,6 +1,7 @@
 import express from "express";
 
 import users from "./users.js";
+import videos from "./videos.js";
 
 import 'dotenv/config';
 
@@ -13,5 +14,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/users", users);
+router.use("/videos", videos);
 
 export default router;
