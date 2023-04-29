@@ -15,21 +15,23 @@ const Home: FC = () => {
   };
 
   const searchAVideo = () => {
-    if (values && values.url !== '') {
+    if (values && values.url !== "") {
       setLoading(true);
-      getYoutubeVideoData(values).then((res) => {
-        if (res && !res.error) {
-          toast.success("Youtube video retrieved successfully!");
-          setData(res.public_url);
-          setLoading(true);
-        } else {
-          setLoading(false);
-          toast.error(res.error);
-          console.log('=====Error1====', res);
-        }
-      }).catch((error) => {
-        console.log('=====Error====', error);
-      });
+      getYoutubeVideoData(values)
+        .then((res) => {
+          if (res && !res.error) {
+            toast.success("Youtube video retrieved successfully!");
+            setData(res.public_url);
+            setLoading(true);
+          } else {
+            setLoading(false);
+            toast.error(res.error);
+            console.log("=====Error1====", res);
+          }
+        })
+        .catch((error) => {
+          console.log("=====Error====", error);
+        });
     }
   };
 
@@ -45,8 +47,7 @@ const Home: FC = () => {
         <h1 className="text-blue">Video Downloader App</h1> <hr />
       </div>
       <div className="row mt-5">
-        
-      <div className="col-md-4">
+        <div className="col-md-4">
           <textarea
             className="form-control url-textarea"
             name="url"
@@ -66,16 +67,10 @@ const Home: FC = () => {
         <div className="col-md-8">
           <div className="card">
             {data && data ? (
-              <video
-                controls
-                src={data && data}
-                className="video-preview"
-              >
+              <video controls src={data && data} className="video-preview">
                 Sorry, your browser doesn't support embedded videos, but don't
                 worry, you can
-                <a href={values&&values.url}>
-                  download it
-                </a>
+                <a href={values && values.url}>download it</a>
                 and watch it with your favorite video player!
               </video>
             ) : (

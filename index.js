@@ -9,7 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 // body parse configuration
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 // body parse configuration
 app.use(
   bodyParser.urlencoded({

@@ -3,6 +3,7 @@ import VideoController from "../controllers/VideoController.js";
 
 const router = express.Router();
 
-router.post("/download", VideoController.createVideoReaquest);
+router.post("/youtube/download", VideoController.createYoutubeVideoRequest);
+router.post("/twitter/download", VideoController.createTwitterVideoRequest);
 
 export default router;
