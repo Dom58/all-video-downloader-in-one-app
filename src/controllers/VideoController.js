@@ -9,7 +9,8 @@ export default class VideoController {
      */
     static async createVideoReaquest (req, res) {
         try {
-            const url = req.query && req.query.url;
+            // const url = req.query && req.query.url;
+            const url = req.body && req.body.url;
             const videoInfo = await ytdl.getInfo(url);
             const title = videoInfo.videoDetails.title;
             const videoOptions = ytdl.chooseFormat(videoInfo.formats, {

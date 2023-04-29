@@ -3,6 +3,6 @@ import VideoController from "../controllers/VideoController.js";
 
 const router = express.Router();
 
-router.get("/download", VideoController.createVideoReaquest);
+router.post("/download", VideoController.createVideoReaquest);
 
 export default router;

@@ -1,0 +1,52 @@
+.text-huge {
+  margin-top: 30px;
+  font-size: 40px !important;
+}
+
+.card {
+  box-shadow: 5px 1px 10px #7a7a7a;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.card div {
+  padding: 10px;
+}
+
+.card-redirect {
+  color: inherit !important;
+}
+
+.card-footer {
+  height: 10%;
+  bottom: 0px;
+  background-color: #0b7434 !important;
+  color: #fff;
+  line-height: 2.5;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+.delete:hover {
+  opacity: 0.8;
+}
+
+.edit-button {
+  position: absolute;
+  z-index: 1;
+  margin-left: 9%;
+  border-radius: 50% !important;
+}
+
+@media screen and (max-width: 829px) {
+}
+
+@media screen and (max-width: 550px) and (min-width: 200px)  {
+  .edit-Button {
+    margin-left: 1%;
+    border-radius: 1px !important;
+  }
+}
