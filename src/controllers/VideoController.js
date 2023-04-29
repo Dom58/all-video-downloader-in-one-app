@@ -40,7 +40,9 @@ export default class VideoController {
             res.json({
               status: 200,
               message: "Youtube video downloaded successfully!",
-              data: response_url,
+              video_title: title,
+              public_url: response_url,
+              data: videoOptions,
             });
           } catch (error) {
             res.json({ status: 500, error: error.message });
