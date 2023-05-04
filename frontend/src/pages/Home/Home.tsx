@@ -46,6 +46,7 @@ const Home: FC = () => {
       <div className="text-huge">
         <h1 className="text-blue">Video Downloader App</h1> <hr />
       </div>
+      
       <div className="row mt-5">
         <div className="col-md-4">
           <textarea
@@ -82,6 +83,7 @@ const Home: FC = () => {
             )}
           </div>
         </div>
+        <p>&copy;2023. Dominique Ndahimana</p>
       </div>
     </>
   );

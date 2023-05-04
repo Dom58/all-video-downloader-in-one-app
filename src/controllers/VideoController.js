@@ -1,4 +1,8 @@
 import ytdl from "ytdl-core";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+// let tt = require('twitter-dl');
+
 // import { Video } from './src/database/models';
 
 export default class VideoController {
@@ -57,7 +61,12 @@ export default class VideoController {
 
   static async createTwitterVideoRequest(req, res) {
     try {
-
+      let folder = './static/videos/twitter';
+      var fs = require('fs');
+      
+      if (!fs.existsSync(folder)){
+          fs.mkdirSync(folder, { recursive: true });
+      }
 
       res.json({
         status: 200,
