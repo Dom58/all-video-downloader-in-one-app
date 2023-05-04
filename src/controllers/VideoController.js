@@ -1,19 +1,17 @@
 import ytdl from "ytdl-core";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-// let tt = require('twitter-dl');
 
 // import { Video } from './src/database/models';
 
 export default class VideoController {
   /**
    * Create the project
-   * @param {object} data data containing project information(firstName:str, middleName:str, lastName:str, email:str, password:str)
-   * @returns {string|object} project payload
+   * @param {object} data data containing project information
+   * @returns {string|object} payload
    */
   static async createYoutubeVideoRequest(req, res) {
     try {
-      // const url = req.query && req.query.url;
       const url = req.body && req.body.url;
       const videoInfo = await ytdl.getInfo(url);
       const title = videoInfo.videoDetails.title;
@@ -36,6 +34,9 @@ export default class VideoController {
         return await response_url;
       });
 
+      // Saving video to the database to make the playlist which will be 
+      // Used in the future of a user
+
       // if(response_url&&response_url) {
       //   // Video.create( {
       //   //   name: "Tester",
@@ -46,7 +47,7 @@ export default class VideoController {
 
       res.json({
         status: 200,
-        message: "Youtube video downloaded successfully!",
+        message: "Youtube video fetched successfully!",
         video_title: title,
         public_url: response_url,
         data: videoOptions,
@@ -68,9 +69,10 @@ export default class VideoController {
           fs.mkdirSync(folder, { recursive: true });
       }
 
+      // This feature will be implemented soon...
       res.json({
         status: 200,
-        message: "Twitter video downloaded successfully!",
+        message: "Twitter video fetched successfully!",
         // data: result,
       });
     } catch (error) {
