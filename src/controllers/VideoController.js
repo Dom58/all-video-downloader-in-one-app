@@ -72,11 +72,13 @@ export default class VideoController {
     const tweetId = req.body;
     try {
       const { data: tweet } = await T.get('statuses/show/:id', { id: tweetId });
+      console.log(tweet);
       const videoUrl = tweet.extended_entities.media[0].video_info.variants[0].url;
 
       const response = await axios.get(videoUrl, { responseType: 'stream' });
       response.data.pipe(res);
     } catch (err) {
+      console.log('======error===', err);
       res.status(500).json({ error: err });
     }
   }
