@@ -21,6 +21,10 @@ by
 npm run start or yarn run start
 ```
 
+## Screenshoots
+![image](https://github.com/Dom58/all-video-downloader-in-one-app/assets/33524053/b80231c7-6d36-46ab-b8ea-40af09d06ae9)
+
+
 # GIT hints
 ## Delete .git folder
 ```bash
