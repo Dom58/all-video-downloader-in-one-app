@@ -1,8 +1,10 @@
-import ytdl from "ytdl-core";
 import { createRequire } from "module";
-const require = createRequire(import.meta.url);
+import ytdl from "ytdl-core";
+import Twit from 'twit';
+import axios from 'axios';
+import dotenv from 'dotenv';
 
-// import { Video } from './src/database/models';
+dotenv.config();
 
 export default class VideoController {
   /**
@@ -61,26 +63,21 @@ export default class VideoController {
   }
 
   static async createTwitterVideoRequest(req, res) {
+    const T = new Twit({
+      consumer_key: process.env.TWITTER_API_KEY,
+      consumer_secret: process.env.TWITTER_API_SECRET,
+      access_token: process.env.TWITTER_ACCESS_TOKEN,
+      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    });
+    const tweetId = req.body;
     try {
-      let folder = './static/videos/twitter';
-      var fs = require('fs');
-      
-      if (!fs.existsSync(folder)){
-          fs.mkdirSync(folder, { recursive: true });
-      }
+      const { data: tweet } = await T.get('statuses/show/:id', { id: tweetId });
+      const videoUrl = tweet.extended_entities.media[0].video_info.variants[0].url;
 
-      // This feature will be implemented soon...
-      res.json({
-        status: 200,
-        message: "Twitter video fetched successfully!",
-        // data: result,
-      });
-    } catch (error) {
-      console.log("error=====", error);
-      res.json({
-        status: 500,
-        error: error.message
-      });
+      const response = await axios.get(videoUrl, { responseType: 'stream' });
+      response.data.pipe(res);
+    } catch (err) {
+      res.status(500).json({ error: err });
     }
   }
 }
